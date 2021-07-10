@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.css">
+    <title>Real Time Clock 01</title>
+    <style>
+        body {
+            background-color: rgb(105, 105, 105);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            color: whitesmoke;
+        }
+
+        .container-fluid {
+            margin-top: 200px;
+        }
+
+        img {
+            width: 240px;
+            height: 240px;
+        }
+    </style>
+</head>
+
+<body onload="RealTime();">
+    <div class="container-fluid">
+        <div class="row text-center" style="font-size: 80px;">
+            <div class="col">
+                <span>Real Time Clock</span>
+            </div>
+        </div>
+        <div class="row text-center" style="margin-left: auto; margin-right: auto; width: 90%;">
+            <div class="col-4">
+                <h1>Hours</h1>
+            </div>
+            <div class="col-4">
+                <h1>Minutes</h1>
+            </div>
+            <div class="col-4">
+                <h1>Seconds</h1>
+            </div>
+        </div>
+        <div class="row align-content-center" style="margin-left: auto; margin-right: auto; width: 90%;">
+            <div class="col-2">
+                <img src="images/0.jpg" alt="" id="h1">
+            </div>
+            <div class="col-2">
+                <img src="images/0.jpg" alt="" id="h2">
+            </div>
+            <div class="col-2">
+                <img src="images/0.jpg" alt="" id="m1">
+            </div>
+            <div class="col-2">
+                <img src="images/0.jpg" alt="" id="m2">
+            </div>
+            <div class="col-2">
+                <img src="images/0.jpg" alt="" id="s1">
+            </div>
+            <div class="col-2">
+                <img src="images/0.jpg" alt="" id="s2">
+            </div>
+        </div>
+        <div class="row text-center" style="margin-left: auto; margin-right: auto; width: 90%;">
+            <div class="col">
+                <h1 id="AmPm"></h1>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    function RealTimeClock() {
+        var Clock = new Date();
+        var hours = Clock.getHours();
+        var min = Clock.getMinutes();
+        var sec = Clock.getSeconds();
+        var AmPm = (hours < 12) ? 'AM' : 'PM';
+        hours = (hours > 12) ? hours - 12 : hours;
+
+        hours = ("0" + hours).slice(-2);
+        min = ("0" + min).slice(-2);
+        sec = ("0" + sec).slice(-2);
+
+        var h1 = hours.charAt(0);
+        var h2 = hours.charAt(1);
+
+        var m1 = min.charAt(0);
+        var m2 = min.charAt(1);
+
+        var s1 = sec.charAt(0);
+        var s2 = sec.charAt(1);
+
+        var h1src = 'Images/' + h1 + '.jpg';
+        var h2src = 'Images/' + h2 + '.jpg';
+
+        var m1src = 'Images/' + m1 + '.jpg';
+        var m2src = 'Images/' + m2 + '.jpg';
+
+        var s1src = 'Images/' + s1 + '.jpg';
+        var s2src = 'Images/' + s2 + '.jpg';
+
+        document.getElementById("h1").setAttribute('src', h1src);
+        document.getElementById("h2").setAttribute('src', h2src);
+
+        document.getElementById("m1").setAttribute('src', m1src);
+        document.getElementById("m2").setAttribute('src', m2src);
+
+        document.getElementById("s1").setAttribute('src', s1src);
+        document.getElementById("s2").setAttribute('src', s2src);
+
+        document.getElementById("AmPm").innerText = AmPm;
+
+        //console.log(h1 + h2 + m1 + m2 + s1 + s2);
+    }
+
+    function RealTime() {
+        setInterval(RealTimeClock, 1000);
+    }
+</script>
+
+</html>
